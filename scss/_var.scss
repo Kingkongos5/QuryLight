@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:300,regular,500,700&display=swap");
+
+
+// Function ======================================
+
+@function rem($px) {
+	$result: math.div($px, 16) + rem;
+	@return $result;
+}
+
+// Base__var =====================================
+
+$maxWidthContainer: 1540;
+$minWidthContainer: 320;
+$maxWidth: 1920;
+$minWidth: 320;
+$padding: 15;
+
+$background: white;
+$page-color: #000;
+$font-size: rem(16);
+$font-weight: 400;
+$font-family: "Ubuntu";
+
+// Mixin =========================================
+
+@mixin adClamp($property, $maxSize, $minSize, $maxWidth: $maxWidth, $minWidth: $minWidth + 1) {
+
+   $slope: math.div(($maxSize - $minSize), ($maxWidth - $minWidth));
+   $yIntersection: -$minWidth * $slope + $minSize;
+   $flyValue: #{rem($yIntersection)}" + " #{$slope * 100}vw;
+   
+   $propertyValue: #{"clamp(" rem($minSize) "," $flyValue "," rem($maxSize) ")"};
+   
+   @if ($minSize > $maxSize) {
+      $propertyValue: #{"clamp(" rem($maxSize) "," $flyValue "," rem($minSize) ")"};
+   }
+
+   #{$property}: #{$propertyValue};
+}
+
+@mixin font($file_name, $font-family: $font-family, $font-weight:$font-weight, $style: normal) {
+	@font-face {
+		font-family: $font_name;
+		font-display: swap;
+		src: url("../fonts/#{$file_name}.woff2") format("woff2"), url("../fonts/#{$file_name}.woff") format("woff");
+		font-weight: #{$weight};
+		font-style: #{$style};
+	}
+}
+
+@mixin fullFont($file_name, $font-family: $font-family, $font-weight: $font-weight, $style: normal) {
+   @font-face {
+      font-family: $font-family;
+      font-display: swap;
+      src:
+         url("../fonts/#{$file_name}-Thin.woff") format("woff"),
+         url("../fonts/#{$file_name}-Thin.ttf") format("ttf");
+      font-weight: 100;
+      font-style: #{$style};
+   }
+   @font-face {
+      font-family: $font-family;
+      font-display: swap;
+      src:
+         url("../fonts/#{$file_name}-Light.woff") format("woff"),
+         url("../fonts/#{$file_name}-Light.ttf") format("ttf");
+      font-weight: 200;
+      font-style: #{$style};
+   }
+   @font-face {
+      font-family: $font-family;
+      font-display: swap;
+      src:
+         url("../fonts/#{$file_name}-ExtraLight.woff") format("woff"),
+         url("../fonts/#{$file_name}-ExtraLight.ttf") format("ttf");
+      font-weight: 300;
+      font-style: #{$style};
+   }
+   @font-face {
+      font-family: $font-family;
+      font-display: swap;
+      src:
+         url("../fonts/#{$file_name}-Regular.woff") format("woff"),
+         url("../fonts/#{$file_name}-Regular.ttf") format("ttf");
+      font-weight: 400;
+      font-style: #{$style};
+   }
+   @font-face {
+      font-family: $font-family;
+      font-display: swap;
+      src:
+         url("../fonts/#{$file_name}-Medium.woff") format("woff"),
+         url("../fonts/#{$file_name}-Medium.ttf") format("ttf");
+      font-weight: 500;
+      font-style: #{$style};
+   }
+   @font-face {
+      font-family: $font-family;
+      font-display: swap;
+      src:
+         url("../fonts/#{$file_name}-SemiBold.woff") format("woff"),
+         url("../fonts/#{$file_name}-SemiBold.ttf") format("ttf");
+      font-weight: 600;
+      font-style: #{$style};
+   }
+   @font-face {
+      font-family: $font-family;
+      font-display: swap;
+      src:
+         url("../fonts/#{$file_name}-Bold.woff") format("woff"),
+         url("../fonts/#{$file_name}-Bold.ttf") format("ttf");
+      font-weight: 700;
+      font-style: #{$style};
+   }
+   @font-face {
+      font-family: $font-family;
+      font-display: swap;
+      src:
+         url("../fonts/#{$file_name}-ExtraBold.woff") format("woff"),
+         url("../fonts/#{$file_name}-ExtraBold.ttf") format("ttf");
+      font-weight: 800;
+      font-style: #{$style};
+   }
+   @font-face {
+      font-family: $font-family;
+      font-display: swap;
+      src:
+         url("../fonts/#{$file_name}-Black.woff") format("woff"),
+         url("../fonts/#{$file_name}-Black.ttf") format("ttf");
+      font-weight: 900;
+      font-style: #{$style};
+   }
+}
